@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Prediction</title>
+</head>
+<body>
+    <h1>Salary Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="experience_level">Experience Level:</label>
+        <input type="text" name="experience_level" required><br><br>
+
+        <label for="employment_type">Employment Type:</label>
+        <input type="text" name="employment_type" required><br><br>
+
+        <label for="job_title">Job Title:</label>
+        <select name="job_title">
+            {% for title in job_titles %}
+            <option value="{{ title }}">{{ title }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="employee_residence">Employee Residence:</label>
+        <input type="text" name="employee_residence" required><br><br>
+
+        <label for="remote_ratio">Remote Ratio:</label>
+        <input type="number" name="remote_ratio" min="0" max="100" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
