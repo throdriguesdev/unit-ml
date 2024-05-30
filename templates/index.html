@@ -4,25 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salary Prediction</title>
+    <script>
+        window.onload = function() {
+            var select = document.getElementById('job_title');
+            select.setAttribute('multiple', true);
+        }
+    </script>
 </head>
 <body>
     <h1>Salary Prediction</h1>
     <form action="/predict" method="post">
         <label for="experience_level">Experience Level:</label>
-        <input type="text" name="experience_level" required><br><br>
+        <select name="experience_level" required>
+            {% for level in experience_levels %}
+            <option value="{{ level }}">{{ level }}</option>
+            {% endfor %}
+        </select><br><br>
 
         <label for="employment_type">Employment Type:</label>
-        <input type="text" name="employment_type" required><br><br>
+        <select name="employment_type" required>
+            {% for type in employment_types %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select><br><br>
 
         <label for="job_title">Job Title:</label>
-        <select name="job_title">
+        <select id="job_title" name="job_title" multiple>
             {% for title in job_titles %}
             <option value="{{ title }}">{{ title }}</option>
             {% endfor %}
         </select><br><br>
 
         <label for="employee_residence">Employee Residence:</label>
-        <input type="text" name="employee_residence" required><br><br>
+        <select name="employee_residence" required>
+            {% for residence in employee_residences %}
+            <option value="{{ residence }}">{{ residence }}</option>
+            {% endfor %}
+        </select><br><br>
 
         <label for="remote_ratio">Remote Ratio:</label>
         <input type="number" name="remote_ratio" min="0" max="100" required><br><br>
