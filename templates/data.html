@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Dados da Base de Dados</h1>
+    {{ data|safe }}
+    <a href="/">Voltar</a>
+</body>
+</html>

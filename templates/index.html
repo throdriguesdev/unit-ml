@@ -10,6 +10,13 @@
 <body>
     <div id="app">
         <h1>Previsor de Salário</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('prediction_routes.index') }}">Home</a></li>
+                <li><a href="{{ url_for('prediction_routes.data') }}">Dados</a></li>
+                <li><a href="{{ url_for('prediction_routes.graphs') }}">Gráficos</a></li>
+            </ul>
+        </nav>
         <form @submit.prevent="submitForm" id="prediction-form">
             <label for="experience_level">Nível de Experiência:</label>
             <select id="experience_level" v-model="form.experience_level">

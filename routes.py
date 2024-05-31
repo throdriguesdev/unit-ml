@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from utils import home, predict, get_salary_data_from_api
+from utils import home, predict, get_salary_data_from_api, get_data, display_data, display_graphs
 
 prediction_routes = Blueprint('prediction_routes', __name__)
 
@@ -33,3 +33,11 @@ def result():
                                api_data=api_data)
     except ValueError:
         return jsonify({'error': 'Invalid predicted salary provided'}), 400
+
+@prediction_routes.route('/data', methods=['GET'])
+def data():
+    return display_data()
+
+@prediction_routes.route('/graphs', methods=['GET'])
+def graphs():
+    return display_graphs()

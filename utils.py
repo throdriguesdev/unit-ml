@@ -1,6 +1,6 @@
 import pandas as pd
 from joblib import load
-from flask import current_app, render_template, request, jsonify, redirect, url_for
+from flask import render_template, request, jsonify, redirect, url_for
 import numpy as np
 import requests
 
@@ -49,7 +49,6 @@ def get_salary_data_from_api(job_title, location):
             return data["data"]
     return []
 
-
 def predict(request):
     data = request.get_json()
     if data is None or 'experience_level' not in data:
@@ -73,3 +72,10 @@ def predict(request):
     predicted_salary_str = str(predicted_salary)
 
     return redirect(url_for('prediction_routes.result', predicted_salary=predicted_salary_str, job_title=job_title, employee_residence=employee_residence))
+
+def display_data():
+    data = pd.read_csv('data/data.csv')
+    return render_template('data.html', data=data.to_html())
+
+def display_graphs():
+    return render_template('graphs.html')
