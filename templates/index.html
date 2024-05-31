@@ -10,7 +10,7 @@
 <body>
     <div id="app">
         <h1>Salary Predictor</h1>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" id="prediction-form">
             <label for="experience_level">Experience Level:</label>
             <select id="experience_level" v-model="form.experience_level">
                 <option value="">Select Experience Level</option>
@@ -33,7 +33,19 @@
             <select id="job_title" v-model="form.job_title">
                 <option value="">Select Job Title</option>
                 <option value="Principal Data Scientist">Principal Data Scientist</option>
-                <!-- Adicione as opções restantes aqui -->
+                <option value="ML Engineer">ML Engineer</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Applied Scientist">Applied Scientist</option>
+                <option value="Data Analyst">Data Analyst</option>
+                <option value="Research Engineer">Research Engineer</option>
+                <option value="Analytics Engineer">Analytics Engineer</option>
+                <option value="Business Intelligence Engineer">Business Intelligence Engineer</option>
+                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                <option value="Data Strategist">Data Strategist</option>
+                <option value="Data Engineer">Data Engineer</option>
+                <option value="Computer Vision Engineer">Computer Vision Engineer</option>
+                <option value="Data Quality Analyst">Data Quality Analyst</option>
+                <option value="Compliance Data Analyst">Compliance Data Analyst</option>
             </select>
 
             <label for="employee_residence">Employee Residence:</label>
@@ -44,11 +56,12 @@
                 <!-- Adicione as opções restantes aqui -->
             </select>
 
-            <label for="remote_ratio">Remote Ratio:</label>
-            <input type="number" id="remote_ratio" v-model="form.remote_ratio">
 
             <button type="submit">Predict</button>
         </form>
+
+        <div id="error-message" class="error-message">Por favor, preencha todos os campos obrigatórios!</div>
+
     </div>
 
     <script>
@@ -65,14 +78,25 @@
             },
             methods: {
                 submitForm() {
-                    axios.post('/predict', this.form)
-                        .then(response => {
-                            console.log(response.data);  // Adicionado para depuração
-                            window.location.href = '/result?predicted_salary=' + response.data;
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    if (this.validateForm()) {
+                        axios.post('/predict', this.form)
+                            .then(response => {
+                                console.log(response.data);  
+                                window.location.href = '/result?predicted_salary=' + response.data;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    } else {
+                        document.getElementById('error-message').style.display = 'block';
+                    }
+                },
+                validateForm() {
+                    return this.form.experience_level !== '' &&
+                           this.form.employment_type !== '' &&
+                           this.form.job_title !== '' &&
+                           this.form.employee_residence !== '' &&
+                           this.form.remote_ratio !== '';
                 }
             }
         });

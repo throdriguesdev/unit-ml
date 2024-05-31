@@ -3,11 +3,12 @@ from joblib import load
 from flask import current_app, render_template, request, jsonify
 import numpy as np
 from flask import redirect, url_for
-# Carregar o modelo e os dados
+
+
 loaded_model = load('ml/salary_model.joblib')
 data = pd.read_csv('data/data.csv')
 
-# Obter valores únicos e converter para listas
+
 experience_levels = data['experience_level'].unique().tolist()
 employment_types = data['employment_type'].unique().tolist()
 employee_residences = data['employee_residence'].unique().tolist()
@@ -37,20 +38,20 @@ def get_data():
     })
 
 def predict(request):
-    # Obter os dados do corpo da solicitação JSON
+
     data = request.get_json()
 
-    # Extrair os dados relevantes do objeto JSON
+
     experience_level = data['experience_level']
     employment_type = data['employment_type']
     job_title = data['job_title']
     employee_residence = data['employee_residence']
     remote_ratio = float(data['remote_ratio'])
 
-    # Calcular a média salarial
+
     mean_salary = calculate_mean_salary(data, job_title)
 
-    # Criar um DataFrame com os dados do usuário
+
     user_input = pd.DataFrame({
         'experience_level': [experience_level],
         'employment_type': [employment_type],
@@ -59,13 +60,11 @@ def predict(request):
         'remote_ratio': [remote_ratio]
     })
 
-    # Realizar a previsão usando o modelo carregado
     predicted_salary = loaded_model.predict(user_input)
 
-    # Converte o valor previsto para string
     predicted_salary_str = str(predicted_salary[0])
 
-    # Retorna o resultado da previsão
+
     return predicted_salary_str
 
 

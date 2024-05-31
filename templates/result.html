@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salary Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result_styles.css') }}">
 </head>
 <body>
-    <h1>Salary Prediction Result</h1>
-    <p>The predicted salary for the user is approximately ${{ predicted_salary }}</p>
-
+    <div class="container">
+        <h1>Salary Prediction Result</h1>
+        <div class="result">
+            <p>The predicted salary for the user is approximately ${{ predicted_salary|int }}</p>
+        </div>
+        <a href="/">Back to Home</a>
+    </div>
 </body>
 </html>
