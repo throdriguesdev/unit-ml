@@ -1,67 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Salary Predictor</title>
+    <title>Previsor de Salário</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app">
-        <h1>Salary Predictor</h1>
+        <h1>Previsor de Salário</h1>
         <form @submit.prevent="submitForm" id="prediction-form">
-            <label for="experience_level">Experience Level:</label>
+            <label for="experience_level">Nível de Experiência:</label>
             <select id="experience_level" v-model="form.experience_level">
-                <option value="">Select Experience Level</option>
-                <option value="SE">SE - Senior</option>
-                <option value="MI">MI - Mid</option>
-                <option value="EN">EN - Entry</option>
-                <option value="EX">EX - Executive</option>
+                <option value="">Selecione o Nível de Experiência</option>
+                <option value="SE">SE - Sênior</option>
+                <option value="MI">MI - Médio</option>
+                <option value="EN">EN - Iniciante</option>
+                <option value="EX">EX - Executivo</option>
             </select>
 
-            <label for="employment_type">Employment Type:</label>
+            <label for="employment_type">Tipo de Emprego:</label>
             <select id="employment_type" v-model="form.employment_type">
-                <option value="">Select Employment Type</option>
-                <option value="FT">Full-Time</option>
-                <option value="CT">Contract</option>
-                <option value="FL">Freelance</option>
-                <option value="PT">Part-Time</option>
+                <option value="">Selecione o Tipo de Emprego</option>
+                <option value="FT">Tempo Integral</option>
+                <option value="CT">Contrato</option>
+                <option value="FL">Freelancer</option>
+                <option value="PT">Meio Período</option>
             </select>
 
-            <label for="job_title">Job Title:</label>
+            <label for="job_title">Título do Cargo:</label>
             <select id="job_title" v-model="form.job_title">
-                <option value="">Select Job Title</option>
-                <option value="Principal Data Scientist">Principal Data Scientist</option>
-                <option value="ML Engineer">ML Engineer</option>
-                <option value="Data Scientist">Data Scientist</option>
-                <option value="Applied Scientist">Applied Scientist</option>
-                <option value="Data Analyst">Data Analyst</option>
-                <option value="Research Engineer">Research Engineer</option>
-                <option value="Analytics Engineer">Analytics Engineer</option>
-                <option value="Business Intelligence Engineer">Business Intelligence Engineer</option>
-                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
-                <option value="Data Strategist">Data Strategist</option>
-                <option value="Data Engineer">Data Engineer</option>
-                <option value="Computer Vision Engineer">Computer Vision Engineer</option>
-                <option value="Data Quality Analyst">Data Quality Analyst</option>
-                <option value="Compliance Data Analyst">Compliance Data Analyst</option>
+                <option value="">Selecione o Título do Cargo</option>
+                <option value="Principal Data Scientist">Cientista de Dados Principal</option>
+                <option value="ML Engineer">Engenheiro de ML</option>
+                <option value="Data Scientist">Cientista de Dados</option>
+                <option value="Applied Scientist">Cientista Aplicado</option>
+                <option value="Data Analyst">Analista de Dados</option>
+                <option value="Research Engineer">Engenheiro de Pesquisa</option>
+                <option value="Analytics Engineer">Engenheiro de Análise</option>
+                <option value="Business Intelligence Engineer">Engenheiro de BI</option>
+                <option value="Machine Learning Engineer">Engenheiro de Aprendizado de Máquina</option>
+                <option value="Data Strategist">Estrategista de Dados</option>
+                <option value="Data Engineer">Engenheiro de Dados</option>
+                <option value="Computer Vision Engineer">Engenheiro de Visão Computacional</option>
+                <option value="Data Quality Analyst">Analista de Qualidade de Dados</option>
+                <option value="Compliance Data Analyst">Analista de Dados de Conformidade</option>
             </select>
 
-            <label for="employee_residence">Employee Residence:</label>
+            <label for="employee_residence">Residência do Empregado:</label>
             <select id="employee_residence" v-model="form.employee_residence">
-                <option value="">Select Employee Residence</option>
-                <option value="ES">Spain</option>
-                <option value="US">United States</option>
-                <!-- Adicione as opções restantes aqui -->
+                <option value="">Selecione a Residência do Empregado</option>
+                <option value="US">Estados Unidos</option>
+                <option value="ES">Espanha</option>
+                <option value="CA">Canadá</option>
+                <option value="DE">Alemanha</option>
+                <option value="GB">Reino Unido</option>
+                <option value="IN">Índia</option>
+                <option value="FR">França</option>
+                <option value="AU">Austrália</option>
+                <option value="BR">Brasil</option>
+                <option value="JP">Japão</option>
             </select>
 
-
-            <button type="submit">Predict</button>
+            <button type="submit">Prever</button>
         </form>
 
         <div id="error-message" class="error-message">Por favor, preencha todos os campos obrigatórios!</div>
-
     </div>
 
     <script>
@@ -73,7 +78,6 @@
                     employment_type: '',
                     job_title: '',
                     employee_residence: '',
-                    remote_ratio: 0
                 }
             },
             methods: {
@@ -81,8 +85,7 @@
                     if (this.validateForm()) {
                         axios.post('/predict', this.form)
                             .then(response => {
-                                console.log(response.data);  
-                                window.location.href = '/result?predicted_salary=' + response.data;
+                                window.location.href = response.request.responseURL;
                             })
                             .catch(error => {
                                 console.error(error);
@@ -95,8 +98,7 @@
                     return this.form.experience_level !== '' &&
                            this.form.employment_type !== '' &&
                            this.form.job_title !== '' &&
-                           this.form.employee_residence !== '' &&
-                           this.form.remote_ratio !== '';
+                           this.form.employee_residence !== '';
                 }
             }
         });

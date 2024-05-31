@@ -20,17 +20,29 @@ h1 {
     text-align: center;
 }
 
-.result {
+.result-card, .api-card {
     background-color: #f9f9f9;
     border-radius: 5px;
     padding: 20px;
     margin-top: 20px;
-    text-align: center;
 }
 
-.result p {
+.result-card p, .api-card p {
     font-size: 1.2em;
     color: #333;
+}
+
+.api-result {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.api-result p {
+    font-size: 1em;
+    color: #555;
 }
 
 a {

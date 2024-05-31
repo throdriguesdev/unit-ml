@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, jsonify
-from utils import home, predict, get_data
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from utils import home, predict, get_salary_data_from_api
 
 prediction_routes = Blueprint('prediction_routes', __name__)
 
@@ -17,6 +17,19 @@ def index():
 
 @prediction_routes.route('/result', methods=['GET'])
 def result():
-    predicted_salary = float(request.args.get('predicted_salary'))
-    return render_template('result.html', predicted_salary=predicted_salary)
+    try:
+        predicted_salary = float(request.args.get('predicted_salary'))
+        job_title = request.args.get('job_title')
+        employee_residence = request.args.get('employee_residence')
 
+        # Chamada da API para obter dados salariais
+        api_data = get_salary_data_from_api(job_title, employee_residence)
+        
+        # Formatação do salário previsto
+        formatted_predicted_salary = f"${predicted_salary:,.0f}"
+
+        return render_template('result.html', 
+                               predicted_salary=formatted_predicted_salary, 
+                               api_data=api_data)
+    except ValueError:
+        return jsonify({'error': 'Invalid predicted salary provided'}), 400
