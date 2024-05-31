@@ -54,5 +54,4 @@ r2 = r2_score(y_test, predictions)
 print(f'MSE: {mse}')
 print(f'R^2: {r2}')
 
-# Salvar o modelo treinado
 dump(model, 'ml/salary_model.joblib')

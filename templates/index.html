@@ -2,50 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salary Prediction</title>
-    <script>
-        window.onload = function() {
-            var select = document.getElementById('job_title');
-            select.setAttribute('multiple', true);
-        }
-    </script>
+    <title>Salary Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1>Salary Prediction</h1>
-    <form action="/predict" method="post">
-        <label for="experience_level">Experience Level:</label>
-        <select name="experience_level" required>
-            {% for level in experience_levels %}
-            <option value="{{ level }}">{{ level }}</option>
-            {% endfor %}
-        </select><br><br>
+    <div id="app">
+        <h1>Salary Predictor</h1>
+        <form @submit.prevent="submitForm">
+            <label for="experience_level">Experience Level:</label>
+            <select id="experience_level" v-model="form.experience_level">
+                <option value="">Select Experience Level</option>
+                <option value="SE">SE - Senior</option>
+                <option value="MI">MI - Mid</option>
+                <option value="EN">EN - Entry</option>
+                <option value="EX">EX - Executive</option>
+            </select>
 
-        <label for="employment_type">Employment Type:</label>
-        <select name="employment_type" required>
-            {% for type in employment_types %}
-            <option value="{{ type }}">{{ type }}</option>
-            {% endfor %}
-        </select><br><br>
+            <label for="employment_type">Employment Type:</label>
+            <select id="employment_type" v-model="form.employment_type">
+                <option value="">Select Employment Type</option>
+                <option value="FT">Full-Time</option>
+                <option value="CT">Contract</option>
+                <option value="FL">Freelance</option>
+                <option value="PT">Part-Time</option>
+            </select>
 
-        <label for="job_title">Job Title:</label>
-        <select id="job_title" name="job_title" multiple>
-            {% for title in job_titles %}
-            <option value="{{ title }}">{{ title }}</option>
-            {% endfor %}
-        </select><br><br>
+            <label for="job_title">Job Title:</label>
+            <select id="job_title" v-model="form.job_title">
+                <option value="">Select Job Title</option>
+                <option value="Principal Data Scientist">Principal Data Scientist</option>
+                <!-- Adicione as opções restantes aqui -->
+            </select>
 
-        <label for="employee_residence">Employee Residence:</label>
-        <select name="employee_residence" required>
-            {% for residence in employee_residences %}
-            <option value="{{ residence }}">{{ residence }}</option>
-            {% endfor %}
-        </select><br><br>
+            <label for="employee_residence">Employee Residence:</label>
+            <select id="employee_residence" v-model="form.employee_residence">
+                <option value="">Select Employee Residence</option>
+                <option value="ES">Spain</option>
+                <option value="US">United States</option>
+                <!-- Adicione as opções restantes aqui -->
+            </select>
 
-        <label for="remote_ratio">Remote Ratio:</label>
-        <input type="number" name="remote_ratio" min="0" max="100" required><br><br>
+            <label for="remote_ratio">Remote Ratio:</label>
+            <input type="number" id="remote_ratio" v-model="form.remote_ratio">
 
-        <input type="submit" value="Predict">
-    </form>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                form: {
+                    experience_level: '',
+                    employment_type: '',
+                    job_title: '',
+                    employee_residence: '',
+                    remote_ratio: 0
+                }
+            },
+            methods: {
+                submitForm() {
+                    axios.post('/predict', this.form)
+                        .then(response => {
+                            console.log(response.data);  // Adicionado para depuração
+                            window.location.href = '/result?predicted_salary=' + response.data;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
