@@ -1,0 +1,142 @@
+/* Estilo comum para todas as páginas */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 20px;
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 1.6em;
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+}
+
+/* Navbar */
+nav {
+    background-color: #0056b3;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 15px 20px;
+    display: block;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: #004494;
+}
+
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.6;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+strong {
+    color: #333;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+ol li {
+    margin-bottom: 10px;
+}
+
+.result-card, .api-card {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.result-card p, .api-card p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.api-result {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.api-result p {
+    font-size: 1em;
+    color: #555;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}

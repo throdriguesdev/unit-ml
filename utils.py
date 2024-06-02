@@ -4,7 +4,7 @@ from flask import render_template, request, jsonify, redirect, url_for
 import numpy as np
 import requests
 
-loaded_model = load('ml/salary_model.joblib')
+loaded_model = load('ml/best_salary_model2.joblib')
 data = pd.read_csv('data/data.csv')
 
 experience_levels = data['experience_level'].unique().tolist()
@@ -39,7 +39,7 @@ def get_salary_data_from_api(job_title, location):
     url = "https://job-salary-data.p.rapidapi.com/job-salary"
     querystring = {"job_title": job_title, "location": location, "radius": "200"}
     headers = {
-        "X-RapidAPI-Key": "2d562a2038msh442eec8c1d9f5a7p1049a4jsn6954b73a715c",
+        "X-RapidAPI-Key": "db35cfba2bmsh0fabb7b412dd639p126722jsnabe8eab1e4aa",
         "X-RapidAPI-Host": "job-salary-data.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)
@@ -77,5 +77,5 @@ def display_data():
     data = pd.read_csv('data/data.csv')
     return render_template('data.html', data=data.to_html())
 
-def display_graphs():
+def display_graphs(): 
     return render_template('graphs.html')

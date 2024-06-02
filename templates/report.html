@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório do Modelo de Machine Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='report.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('prediction_routes.index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('prediction_routes.graphs') }}">Graficos</a></li>
+            <li><a href="{{ url_for('prediction_routes.report') }}">Modelo</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Relatório do Modelo de Machine Learning</h1>
+        
+        <div class="section">
+            <h2>Melhores Parâmetros</h2>
+            <p><strong>Regressor:</strong> GradientBoostingRegressor</p>
+            <p><strong>Learning Rate:</strong> 0.1</p>
+            <p><strong>Max Depth:</strong> 4</p>
+            <p><strong>Number of Estimators:</strong> 100</p>
+        </div>
+        
+        <div class="section">
+            <h2>Métricas de Avaliação</h2>
+            <table>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>Mean Squared Error (MSE)</td>
+                    <td>2366545821.608586</td>
+                </tr>
+                <tr>
+                    <td>R² Score</td>
+                    <td>0.400539055964104</td>
+                </tr>
+                <tr>
+                    <td>Mean Absolute Error (MAE)</td>
+                    <td>37023.72649309405</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Descrição do Modelo</h2>
+            <p>O modelo foi treinado utilizando um pipeline que inclui as seguintes etapas:</p>
+            <ol>
+                <li><strong>Carregamento dos Dados:</strong> Os dados foram carregados de um arquivo CSV.</li>
+                <li><strong>Definição das Features e Target:</strong> Foram definidas as features 'experience_level', 'employment_type', 'job_title', e 'employee_residence' como variáveis independentes e 'salary_in_usd' como a variável dependente.</li>
+                <li><strong>Divisão dos Dados:</strong> Os dados foram divididos em conjuntos de treino e teste usando uma proporção de 80/20.</li>
+                <li><strong>Transformação das Variáveis:</strong> As variáveis categóricas foram transformadas em vetores one-hot usando o OneHotEncoder.</li>
+                <li><strong>Construção do Pipeline:</strong> Um pipeline foi criado para incluir a pré-processamento e o modelo preditivo.</li>
+                <li><strong>Grid Search:</strong> Foi realizado um Grid Search com validação cruzada para encontrar os melhores hiperparâmetros para diferentes regressores.</li>
+                <li><strong>Treinamento do Modelo:</strong> O modelo com os melhores parâmetros foi treinado nos dados de treino.</li>
+                <li><strong>Avaliação do Modelo:</strong> O modelo foi avaliado usando métricas como MSE, R² Score, e MAE.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

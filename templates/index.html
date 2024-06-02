@@ -12,9 +12,9 @@
         <h1>Previsor de Salário</h1>
         <nav>
             <ul>
-                <li><a href="{{ url_for('prediction_routes.index') }}">Home</a></li>
-                <li><a href="{{ url_for('prediction_routes.data') }}">Dados</a></li>
-                <li><a href="{{ url_for('prediction_routes.graphs') }}">Gráficos</a></li>
+                <li><a href="{{ url_for('prediction_routes.index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('prediction_routes.graphs') }}">Graficos</a></li>
+                <li><a href="{{ url_for('prediction_routes.report') }}">Modelo</a></li>
             </ul>
         </nav>
         <form @submit.prevent="submitForm" id="prediction-form">
