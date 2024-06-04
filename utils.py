@@ -39,7 +39,7 @@ def get_salary_data_from_api(job_title, location):
     url = "https://job-salary-data.p.rapidapi.com/job-salary"
     querystring = {"job_title": job_title, "location": location, "radius": "200"}
     headers = {
-        "X-RapidAPI-Key": "db35cfba2bmsh0fabb7b412dd639p126722jsnabe8eab1e4aa",
+        # "X-RapidAPI-Key": "db35cfba2bmsh0fabb7b412dd639p126722jsnabe8eab1e4aa",
         "X-RapidAPI-Host": "job-salary-data.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)

@@ -1,0 +1,48 @@
+2024-06-04 14:26:30,538 ERROR: Error in prediction route: division by zero
+2024-06-04 14:26:30,539 ERROR: Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'prediction_routes.prediction' did not return a valid response. The function either returned None or ended without a return statement.
+2024-06-04 14:26:32,702 ERROR: Error in prediction route: division by zero
+2024-06-04 14:26:32,703 ERROR: Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'prediction_routes.prediction' did not return a valid response. The function either returned None or ended without a return statement.
+2024-06-04 14:26:32,870 ERROR: Error in prediction route: division by zero
+2024-06-04 14:26:32,871 ERROR: Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'prediction_routes.prediction' did not return a valid response. The function either returned None or ended without a return statement.
+2024-06-04 14:26:33,046 ERROR: Error in prediction route: division by zero
+2024-06-04 14:26:33,046 ERROR: Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/home/th/.local/lib/python3.10/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'prediction_routes.prediction' did not return a valid response. The function either returned None or ended without a return statement.
